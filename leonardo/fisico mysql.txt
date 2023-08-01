@@ -1,0 +1,68 @@
+CREATE TABLE tb_usuarios (
+    cod_usuario INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (cod_usuario),
+    nome_usuario VARCHAR(60) NOT NULL,
+    data_nasc DATE,
+    foto_perfil VARCHAR(255),
+    descricao_usuario VARCHAR(80),
+    especificacoes_usuario VARCHAR(30),
+    curso VARCHAR(20),
+    email_usuario VARCHAR(50) NOT NULL,
+    tipo_usuario VARCHAR(1) DEFAULT 'U', 
+    CHECK(tipo_usuario IN('U','A')),
+    inativo VARCHAR(1) DEFAULT 'N',
+    CHECK(inativo IN('S','N')),
+    nickname_usuario VARCHAR(50) NOT NULL,
+    senha_usuario VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE tb_projetos (
+    cod_projeto INT NOT NULL AUTO_INCREMENT, 
+    PRIMARY KEY (cod_projeto),
+    area_projeto VARCHAR(50) NOT NULL,
+    nome_projeto VARCHAR(30) NOT NULL,
+    inativo_proj VARCHAR(1) DEFAULT'S',
+    CHECK(inativo_proj IN('S','N')),
+    descricao_proj VARCHAR(150) NOT NULL,
+    proposta VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE tb_usuarios_projetos (
+    cod_usuario INT NOT NULL,
+    cod_projeto INT NOT NULL,
+    permitido VARCHAR(1) DEFAULT 'N',
+    CHECK(permitido IN('S','N')), 
+    funcao_usuario VARCHAR(30) NOT NULL,
+    inativo_user_proj VARCHAR(1) DEFAULT 'S',
+    CHECK(inativo_user_proj IN('S','N')),
+    PRIMARY KEY (cod_usuario, cod_projeto),
+    CONSTRAINT fk_usuarioproj FOREIGN KEY (cod_usuario) REFERENCES tb_usuarios (cod_usuario),                                   
+    CONSTRAINT fk_projetouser FOREIGN KEY (cod_projeto) REFERENCES tb_projetos (cod_projeto)
+);
+
+CREATE TABLE tb_usuarios_mensagens (
+    cod_mensagem INT NOT NULL AUTO_INCREMENT, 
+    PRIMARY KEY(cod_mensagem),
+    cod_usuario INT NOT NULL,
+    bloqueada VARCHAR(1) DEFAULT 'N',
+    CHECK(bloqueada IN('S','N')), 
+    mensagem VARCHAR(255) NOT NULL,
+    hora_mensagem TIMESTAMP NOT NULL,
+    cod_projeto INT NOT NULL,
+    CONSTRAINT fk_usuariomens FOREIGN KEY (cod_usuario) REFERENCES tb_usuarios (cod_usuario),                                   
+    CONSTRAINT fk_projetomens FOREIGN KEY (cod_projeto) REFERENCES tb_projetos (cod_projeto)                        
+);
+
+CREATE TABLE tb_topicos (
+    cod_topico INT NOT NULL AUTO_INCREMENT, 
+    PRIMARY KEY(cod_topico),
+    cod_usuario INT NOT NULL,
+    cod_projeto INT NOT NULL,
+    nome_topico VARCHAR(30) NOT NULL,
+    conteudo VARCHAR(255),
+    concluido VARCHAR(1) DEFAULT 'N',
+    CHECK(concluido IN('S','N')), 
+    tarefas VARCHAR(100),
+    CONSTRAINT fk_usuariotopic FOREIGN KEY (cod_usuario) REFERENCES tb_usuarios (cod_usuario),                                   
+    CONSTRAINT fk_projetotopic FOREIGN KEY (cod_projeto) REFERENCES tb_projetos (cod_projeto)
+);
