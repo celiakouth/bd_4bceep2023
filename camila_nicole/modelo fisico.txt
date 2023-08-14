@@ -1,0 +1,105 @@
+CREATE TABLE IF NOT EXISTS tb_cidades(
+ cod_cid INT(11) NOT NULL AUTO_INCREMENT,
+ nome_cid VARCHAR(45) NOT NULL,
+ estado_cid VARCHAR(2) NOT NULL CHECK (estado_cid IN ('PR')), 
+PRIMARY KEY (cod_cid)) ENGINE = InnoDB;
+
+
+
+CREATE TABLE IF NOT EXISTS tb_clientes (
+  cod_cli INT NOT NULL AUTO_INCREMENT,
+  nome_cli VARCHAR(40) NOT NULL,
+  data_nasc_cli DATE NOT NULL,
+  cpf_cli VARCHAR(11) NOT NULL,
+  email_cli VARCHAR(60) NULL,
+  bairro_cli VARCHAR(20) NOT NULL,
+  rua_cli VARCHAR(30) NOT NULL,
+  num_cli INT NOT NULL,
+  complemento_cli VARCHAR(15) NOT NULL,
+  ativo_cli CHAR(1) NOT NULL DEFAULT 'S' CHECK (ativo_cli IN ('S','N')),
+  cod_cid INT NOT NULL,
+  tel_cli VARCHAR(11) NOT NULL,
+  cep_cli INT NOT NULL,
+  PRIMARY KEY (cod_cli),
+  INDEX fkcod_cid_idx (cod_cid ASC),
+  CONSTRAINT fkcod_cid
+    FOREIGN KEY (cod_cid)
+    REFERENCES tb_cidades (cod_cid)
+) ENGINE = InnoDB;
+
+
+
+
+CREATE TABLE IF NOT EXISTS tb_funcionarios (
+  cod_func INT NOT NULL AUTO_INCREMENT,
+  nome_func VARCHAR(45) NOT NULL,
+  data_nasc_func DATE NOT NULL,
+  cpf_func VARCHAR(45) NOT NULL,
+  tel_func BIGINT NOT NULL,
+  email_func VARCHAR(45) NOT NULL,
+  data_contat DATE NOT NULL,
+  ativo_func CHAR(2) NOT NULL DEFAULT 'S'  CHECK (ativo_func IN ('S','N')),
+  tipo_cadastro CHAR(2) NOT NULL DEFAULT 'F' CHECK (tipo_cadastro IN ('F','A')),
+  usuario VARCHAR(45) NOT NULL,
+  senha VARCHAR(45) NOT NULL,
+  PRIMARY KEY (cod_func)
+) ENGINE = InnoDB;
+
+
+
+CREATE TABLE IF NOT EXISTS tb_servicos (
+  cod_serv INT NOT NULL AUTO_INCREMENT,
+  tipo_serv VARCHAR(45) NOT NULL,
+  tempo_duracao INT NOT NULL,
+  nome_serv VARCHAR(45) NOT NULL,
+  PRIMARY KEY (cod_serv)
+) ENGINE = InnoDB;
+
+
+
+
+CREATE TABLE IF NOT EXISTS tb_funcionarios_servicos (
+  cod_func_fk INT NOT NULL,
+  cod_serv_fk INT NOT NULL,
+  INDEX cod_func_fk_idx (cod_func_fk ASC),
+  INDEX cod_serv_fk_idx (cod_serv_fk ASC),
+  CONSTRAINT cod_func_k
+  PRIMARY KEY (cod_func_fk, cod_serv_fk),
+    FOREIGN KEY (cod_func_fk)
+    REFERENCES tb_funcionarios (cod_func),
+  CONSTRAINT cod_serv_fk
+    FOREIGN KEY (cod_serv_fk)
+    REFERENCES tb_servicos (cod_serv)
+) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS tb_agendamentos (
+  cod_agendamento INT NOT NULL AUTO_INCREMENT,
+  cod_func INT NOT NULL,
+  cod_servicos INT NOT NULL,
+  cod_cli INT NOT NULL,
+  PRIMARY KEY (cod_agendamento),
+  INDEX fkcod_cli_idx (cod_cli ASC),
+  INDEX fkcod_servicos_idx (cod_func ASC, cod_servicos ASC),
+  CONSTRAINT fkcod_func
+    FOREIGN KEY (cod_func, cod_servicos)
+    REFERENCES tb_funcionarios_servicos (cod_func_fk, cod_serv_fk),
+  CONSTRAINT fkcod_cli
+    FOREIGN KEY (cod_cli)
+    REFERENCES tb_clientes (cod_cli)
+) ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS tb_horarios (
+  cod_horario INT NOT NULL AUTO_INCREMENT,
+  dia_semana VARCHAR(45) NOT NULL,
+  entrada_manha DATETIME NOT NULL,
+  entrada_tarde DATETIME NOT NULL,
+  saida_manha DATETIME NOT NULL,
+  saida_tarde DATETIME NOT NULL,
+  cod_func_fk INT NOT NULL,
+  PRIMARY KEY (cod_horario),
+  INDEX cod_func_fk_idx (cod_func_fk ASC),
+  CONSTRAINT cod_func_fk
+    FOREIGN KEY (cod_func_fk)
+    REFERENCES tb_funcionarios (cod_func)
+) ENGINE = InnoDB;

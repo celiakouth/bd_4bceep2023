@@ -1,0 +1,39 @@
+CLIENTES:
+
+INSERT INTO `tb_clientes` (`cod_cli`, `nome_cli`, `data_nasc_cli`, `cpf_cli`, `email_cli`, `bairro_cli`, `rua_cli`, `num_cli`, `complemento_cli`, `ativo_cli`, `cod_cid`, `tel_cli`, `cep_cli`) VALUES (01, 'nicole botti', '2005-06-24', '09712610918', 'nicole@gmail.com', 'faculdade', 'medicina', '1660', 'casa', 's', '1', '999509900', '888780988');
+INSERT INTO `tb_clientes` (`cod_cli`, `nome_cli`, `data_nasc_cli`, `cpf_cli`, `email_cli`, `bairro_cli`, `rua_cli`, `num_cli`, `complemento_cli`, `ativo_cli`, `cod_cid`, `tel_cli`, `cep_cli`) VALUES (02, 'bruno', '2000-05-03', '0959493837', 'nicolebdefranca@gmail.com', 'faculdade', 'cascavel', '1660', 'casa', 's', '1', '999509900', '85819260');
+INSERT INTO `tb_clientes` (`cod_cli`, `nome_cli`, `data_nasc_cli`, `cpf_cli`, `email_cli`, `bairro_cli`, `rua_cli`, `num_cli`, `complemento_cli`, `ativo_cli`, `cod_cid`, `tel_cli`, `cep_cli`) VALUES (03, 'nicole ee', '2005-06-24', '09712610918', 'nicole@gmail.com', 'faculdade', 'medicina', '1660', 'casa', 's', '1', '999509900', '888780988');
+INSERT INTO `tb_clientes` (`cod_cli`, `nome_cli`, `data_nasc_cli`, `cpf_cli`, `email_cli`, `bairro_cli`, `rua_cli`, `num_cli`, `complemento_cli`, `ativo_cli`, `cod_cid`, `tel_cli`, `cep_cli`) VALUES (04, 'nicole botti', '2005-06-24', '09712610918', 'nicole@gmail.com', 'faculdade', 'medicina', '1660', 'casa', 's', '1', '999509900', '888780988');
+INSERT INTO `tb_clientes` (`cod_cli`, `nome_cli`, `data_nasc_cli`, `cpf_cli`, `email_cli`, `bairro_cli`, `rua_cli`, `num_cli`, `complemento_cli`, `ativo_cli`, `cod_cid`, `tel_cli`, `cep_cli`) VALUES (NULL, 'camiola', '2000-05-03', '0959493837', 'camilabdefranca@gmail.com', 'faculdade', 'cascavel', '1660', 'casa', 's', '1', '999509900', '85819260');
+
+
+FUNCIONÁRIOS:
+
+INSERT INTO `tb_funcionarios` (`cod_func`, `nome_func`, `data_nasc_func`, `cpf_func`, `tel_func`, `email_func`, `data_contat`, `ativo_func`, `tipo_cadastro`, `usuario`, `senha`) VALUES (01, 'bruno', '6999-08-07', '09712610918', '999509900', 'nicolebdefranca@gmail.com', '2003-08-07', 's', 'f', 'nicole', 'lio');
+INSERT INTO `tb_funcionarios` (`cod_func`, `nome_func`, `data_nasc_func`, `cpf_func`, `tel_func`, `email_func`, `data_contat`, `ativo_func`, `tipo_cadastro`, `usuario`, `senha`) VALUES (02, 'nicole teste', '2005-06-24', '09712610918', '999509900', 'nicolebdefranca@gmail.com', '2000-06-30', 's', 'f', 'funcionario', 'funcuina');
+INSERT INTO `tb_funcionarios` (`cod_func`, `nome_func`, `data_nasc_func`, `cpf_func`, `tel_func`, `email_func`, `data_contat`, `ativo_func`, `tipo_cadastro`, `usuario`, `senha`) VALUES (03, 'nome', '2023-07-10', '09867856457', '999509900', 'nicole@gmail.com', '2000-04-04', 's', 'f', 'camila', 'camila');
+INSERT INTO `tb_funcionarios` (`cod_func`, `nome_func`, `data_nasc_func`, `cpf_func`, `tel_func`, `email_func`, `data_contat`, `ativo_func`, `tipo_cadastro`, `usuario`, `senha`) VALUES (04, 'nicole tes', '2005-06-24', '09712690918', '999509900', 'nicolebdef@gmail.com', '2000-06-30', 's', 'f', 'funcionario', 'NECOLI');
+INSERT INTO `tb_funcionarios` (`cod_func`, `nome_func`, `data_nasc_func`, `cpf_func`, `tel_func`, `email_func`, `data_contat`, `ativo_func`, `tipo_cadastro`, `usuario`, `senha`) VALUES (05, 'bruna', '6999-08-07', '09712614918', '999308900', 'nicdefranca@gmail.com', '2005-06-07', 's', 'f', 'nicole', 'lio');
+
+
+HORARIOS:
+INSERT INTO `tb_horarios` (`cod_horario`, `dia_semana`, `entrada_manha`, `entrada_tarde`, `saida_manha`, `saida_tarde`, `cod_func_fk`) VALUES ('01', 'segunda', '2023-08-03 10:07:17', '2023-08-03 13:32:17', '2023-08-03 12:07:13', '2023-08-03 19:07:17', '1');
+INSERT INTO `tb_horarios` (`cod_horario`, `dia_semana`, `entrada_manha`, `entrada_tarde`, `saida_manha`, `saida_tarde`, `cod_func_fk`) VALUES ('02', 'segunda', '2023-08-03 06:57:17', '2023-08-03 15:54:17', '2023-08-03 12:07:17', '2023-08-03 20:07:17', '6');
+INSERT INTO `tb_horarios` (`cod_horario`, `dia_semana`, `entrada_manha`, `entrada_tarde`, `saida_manha`, `saida_tarde`, `cod_func_fk`) VALUES ('03', 'segunda', '2023-08-03 07:47:17', '2023-08-03 14:34:17', '2023-08-03 12:07:15', '2023-08-03 23:07:17', '3');
+INSERT INTO `tb_horarios` (`cod_horario`, `dia_semana`, `entrada_manha`, `entrada_tarde`, `saida_manha`, `saida_tarde`, `cod_func_fk`) VALUES ('04', 'segunda', '2023-08-03 08:27:17', '2023-08-03 11:55:17', '2023-08-03 12:07:11', '2023-08-03 18:07:17', '8');
+INSERT INTO `tb_horarios` (`cod_horario`, `dia_semana`, `entrada_manha`, `entrada_tarde`, `saida_manha`, `saida_tarde`, `cod_func_fk`) VALUES ('05', 'segunda', '2023-08-03 09:07:17', '2023-08-03 12:05:17', '2023-08-03 11:07:14', '2023-08-03 17:07:17', '5');
+
+SERVIÇOS:
+INSERT INTO `tb_servicos` (`cod_serv`, `tipo_serv`, `tempo_duracao`, `nome_serv`) VALUES ('01', 'tipoA', '35', 'manutenção');
+INSERT INTO `tb_servicos` (`cod_serv`, `tipo_serv`, `tempo_duracao`, `nome_serv`) VALUES ('02', 'tipoA', '24', 'manutenção');
+INSERT INTO `tb_servicos` (`cod_serv`, `tipo_serv`, `tempo_duracao`, `nome_serv`) VALUES ('03', 'tipoB', '15', 'montagem');
+INSERT INTO `tb_servicos` (`cod_serv`, `tipo_serv`, `tempo_duracao`, `nome_serv`) VALUES ('04', 'tipoA', '60', 'manutenção');
+INSERT INTO `tb_servicos` (`cod_serv`, `tipo_serv`, `tempo_duracao`, `nome_serv`) VALUES ('05', 'tipoB', '43', 'montegem');
+
+
+CIDADES:
+INSERT INTO tb_cidades (cod_cid, nome_cid, estado_cid) VALUES (2853, 'Cascavel', 'PR');
+
+
+
+
